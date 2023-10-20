@@ -1,44 +1,12 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const eventsContainer = document.getElementById('events');
-  
-  chrome.storage.local.get('events', function(data) {
-    if (data.events) {
-      const events = data.events.events;
-      
-      eventsContainer.innerHTML = '<h1>Natural Events Logger</h1>';
-      
-      // Initialize counters for each category
-      const categoryCounters = {};
-      
-      events.forEach(event => {
-        const category = event.categories[0].title;
-        
-        if (!categoryCounters[category]) {
-          categoryCounters[category] = {
-            date: new Date(event.geometry[0].date),
-            counter: 0
-          };
-        }
-        
-        const eventDate = new Date(event.geometry[0].date);
-        const daysSince = Math.floor((new Date() - eventDate) / (1000 * 60 * 60 * 24));
-        
-        // Update the counter for the category
-        categoryCounters[category].counter = daysSince;
-        
-        const eventElement = document.createElement('div');
-        eventElement.textContent = `${event.title} - ${event.description} - Days since: ${daysSince}`;
-        eventsContainer.appendChild(eventElement);
-      });
-      
-      // Display days since the most recent event in each category
-      for (const category in categoryCounters) {
-        const categoryElement = document.createElement('p');
-        categoryElement.textContent = `Days since most recent ${category} event: ${categoryCounters[category].counter}`;
-        eventsContainer.appendChild(categoryElement);
-      }
-    } else {
-      eventsContainer.textContent = 'No events data available.';
-    }
-  });
-});
+=<!DOCTYPE html>
+<html>
+<head>
+  <title>Natural Events Logger</title>
+</head>
+<body>
+  <h1>Natural Events Logger</h1>
+  <div id="events">
+    <!-- Events will be displayed here -->
+  </div>
+</body>
+</html>
