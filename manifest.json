@@ -3,19 +3,12 @@
   "name": "Natural Events Logger",
   "version": "1.0",
   "description": "Log natural events from EONET",
-  "permissions": [
-    "http://eonet.sci.gsfc.nasa.gov/api/v3/events",
-    "storage"
-  ],
+  "permissions": ["http://eonet.sci.gsfc.nasa.gov/api/v3/events"],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
     "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
-    }
+    "default_icon": "icon.png"  // Reference your single icon
   }
 }
